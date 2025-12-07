@@ -332,8 +332,6 @@ Invoice_Processing_Workflow/
 ├── demo_invoice.json                # Sample invoice for testing
 ├── requirements.txt                 # Python dependencies
 ├── README.md                        # Quick start guide
-├── DEMO_GUIDE.md                    # Recording demo video guide
-├── INTEGRATION_GUIDE.md             # Wiring real adapters
 ├── ARCHITECTURE.md                  # This file
 ├── postman_collection.json          # Postman API collection
 ├── .gitignore
@@ -380,15 +378,6 @@ Invoice_Processing_Workflow/
 ---
 
 ## Extension Points
-
-**To integrate real services:**
-
-1. **OCR** → Replace mock in OcrNlpNode with GoogleVisionAdapter or AwsTextractAdapter
-2. **Enrichment** → Replace with ClearbitAdapter or internal vendor DB
-3. **ERP** → Replace with SapErpAdapter or NetsuiteAdapter
-4. **Email** → Replace with SendGridAdapter or SesAdapter
-5. **Database** → Replace SQLite with PostgresAdapter or DynamoDbAdapter
-6. **Custom Logic** → Add new nodes or modify existing ones to suit your business rules
 
 **To add new stages:**
 
@@ -438,9 +427,9 @@ Invoice_Processing_Workflow/
 
 ## Next Steps
 
-1. **Test locally** using `DEMO_GUIDE.md`
-2. **Integrate real adapters** using `INTEGRATION_GUIDE.md`
-3. **Deploy** Flask API and runner to production environment
-4. **Monitor** via logs and audit trail
-5. **Iterate** based on feedback
+1. **Integrate real adapters** using `INTEGRATION_GUIDE.md`
+2. **Deploy** Flask API and runner to production environment
+3. **Monitor** via logs and audit trail
+4. **Iterate** based on feedback
+
 
