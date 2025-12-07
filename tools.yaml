@@ -1,0 +1,9 @@
+bigtool_pools:
+  ocr: ["google_vision", "tesseract", "aws_textract"]
+  enrichment: ["clearbit", "people_data_labs", "vendor_db"]
+  erp_connector: ["sap_sandbox", "netsuite", "mock_erp"]
+  nlp: ["anthropic"]
+  db: ["sqlite", "postgres"]
+  email: ["sendgrid", "ses"]
+
+# For demo, the BigtoolPicker will pick the first available provider in each pool.

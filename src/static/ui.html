@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Human Review UI</title>
+    <style>body{font-family:Arial;margin:20px} table{border-collapse:collapse} td,th{border:1px solid #ccc;padding:6px}</style>
+  </head>
+  <body>
+    <h3>Pending Human Review</h3>
+    <div id="list"></div>
+    <script>
+      async function load(){
+        const r = await fetch('/human-review/pending');
+        const j = await r.json();
+        const div = document.getElementById('list');
+        if(!j.items || j.items.length==0){ div.innerHTML = '<p>No pending checkpoints</p>'; return }
+        let html = '<table><tr><th>Checkpoint</th><th>Invoice</th><th>Amount</th><th>Action</th></tr>';
+        for(const it of j.items){
+          html += `<tr><td>${it.checkpoint_id}</td><td>${it.invoice_id}</td><td>${it.summary.amount||''}</td><td>`+
+            `<button onclick="decide('${it.checkpoint_id}','ACCEPT')">Accept</button> <button onclick="decide('${it.checkpoint_id}','REJECT')">Reject</button>`+
+            `</td></tr>`;
+        }
+        html += '</table>';
+        div.innerHTML = html;
+      }
+      async function decide(id, decision){
+        await fetch('/human-review/decision',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({checkpoint_id:id,decision:decision,reviewer_id:'ui_user'})});
+        alert('Decision sent: '+decision);
+        load();
+      }
+      load();
+    </script>
+  </body>
+</html>

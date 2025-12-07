@@ -1,0 +1,618 @@
+[
+  {
+    "id": 15,
+    "invoice_id": "INV-1001",
+    "stage": "INTAKE",
+    "message": "Persisted raw_id 0da20160-588c-4bd3-9017-c8376681f394",
+    "ts": 1765114414.8087914
+  },
+  {
+    "id": 16,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Bigtool selected: google_vision",
+    "ts": 1765114414.9904807
+  },
+  {
+    "id": 17,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Parsed line items",
+    "ts": 1765114415.083629
+  },
+  {
+    "id": 18,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Bigtool selected for enrichment: clearbit",
+    "ts": 1765114415.1696374
+  },
+  {
+    "id": 19,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Vendor normalized and enriched",
+    "ts": 1765114415.2516122
+  },
+  {
+    "id": 20,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "ERP tool picked: sap_sandbox",
+    "ts": 1765114415.360612
+  },
+  {
+    "id": 21,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "Fetched 1 PO(s)",
+    "ts": 1765114415.4641979
+  },
+  {
+    "id": 22,
+    "invoice_id": "INV-1001",
+    "stage": "MATCH_TWO_WAY",
+    "message": "Match score 0.95, result MATCHED",
+    "ts": 1765114415.552762
+  },
+  {
+    "id": 23,
+    "invoice_id": "INV-1001",
+    "stage": "CHECKPOINT_HITL",
+    "message": "Checkpoint created 59b43ebc-642c-43d3-b71d-26f23d580c8b",
+    "ts": 1765114415.7383342
+  },
+  {
+    "id": 24,
+    "invoice_id": "INV-1001",
+    "stage": "RECONCILE",
+    "message": "Accounting entries built",
+    "ts": 1765114418.4393952
+  },
+  {
+    "id": 25,
+    "invoice_id": "INV-1001",
+    "stage": "APPROVE",
+    "message": "Approval status ESCALATED",
+    "ts": 1765114418.5461028
+  },
+  {
+    "id": 26,
+    "invoice_id": "INV-1001",
+    "stage": "POSTING",
+    "message": "Posted to ERP: {'posted': True, 'erp_txn_id': 'TXN-555'}",
+    "ts": 1765114418.6288612
+  },
+  {
+    "id": 27,
+    "invoice_id": "INV-1001",
+    "stage": "NOTIFY",
+    "message": "Notifications sent",
+    "ts": 1765114418.7349575
+  },
+  {
+    "id": 28,
+    "invoice_id": "INV-1001",
+    "stage": "COMPLETE",
+    "message": "Workflow complete",
+    "ts": 1765114418.8313637
+  },
+  {
+    "id": 29,
+    "invoice_id": "INV-1001",
+    "stage": "INTAKE",
+    "message": "Persisted raw_id 337ab7d4-f580-43bc-af49-e5384c0dfed6",
+    "ts": 1765114615.3616548
+  },
+  {
+    "id": 30,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Bigtool selected: google_vision",
+    "ts": 1765114615.5174427
+  },
+  {
+    "id": 31,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Parsed line items",
+    "ts": 1765114615.6134062
+  },
+  {
+    "id": 32,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Bigtool selected for enrichment: clearbit",
+    "ts": 1765114615.7683349
+  },
+  {
+    "id": 33,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Vendor normalized and enriched",
+    "ts": 1765114615.865359
+  },
+  {
+    "id": 34,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "ERP tool picked: sap_sandbox",
+    "ts": 1765114616.0095942
+  },
+  {
+    "id": 35,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "Fetched 1 PO(s)",
+    "ts": 1765114616.1156266
+  },
+  {
+    "id": 36,
+    "invoice_id": "INV-1001",
+    "stage": "MATCH_TWO_WAY",
+    "message": "Match score 0.95, result MATCHED",
+    "ts": 1765114616.2498775
+  },
+  {
+    "id": 37,
+    "invoice_id": "INV-1001",
+    "stage": "CHECKPOINT_HITL",
+    "message": "Checkpoint created e618a0cf-83e1-4662-8ef9-653acdd3989b",
+    "ts": 1765114616.5124187
+  },
+  {
+    "id": 38,
+    "invoice_id": "INV-1001",
+    "stage": "RECONCILE",
+    "message": "Accounting entries built",
+    "ts": 1765114619.1553967
+  },
+  {
+    "id": 39,
+    "invoice_id": "INV-1001",
+    "stage": "APPROVE",
+    "message": "Approval status ESCALATED",
+    "ts": 1765114619.312426
+  },
+  {
+    "id": 40,
+    "invoice_id": "INV-1001",
+    "stage": "POSTING",
+    "message": "Posted to ERP: {'posted': True, 'erp_txn_id': 'TXN-555'}",
+    "ts": 1765114619.457199
+  },
+  {
+    "id": 41,
+    "invoice_id": "INV-1001",
+    "stage": "NOTIFY",
+    "message": "Notifications sent",
+    "ts": 1765114619.6128256
+  },
+  {
+    "id": 42,
+    "invoice_id": "INV-1001",
+    "stage": "COMPLETE",
+    "message": "Workflow complete",
+    "ts": 1765114619.7480795
+  },
+  {
+    "id": 43,
+    "invoice_id": "INV-1001",
+    "stage": "INTAKE",
+    "message": "Persisted raw_id a906ada9-76f7-4a48-ad85-345fe8d8ba23",
+    "ts": 1765114970.989238
+  },
+  {
+    "id": 44,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Bigtool selected: google_vision",
+    "ts": 1765114971.164218
+  },
+  {
+    "id": 45,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Parsed line items",
+    "ts": 1765114971.268408
+  },
+  {
+    "id": 46,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Bigtool selected for enrichment: clearbit",
+    "ts": 1765114971.3657007
+  },
+  {
+    "id": 47,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Vendor normalized and enriched",
+    "ts": 1765114971.447743
+  },
+  {
+    "id": 48,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "ERP tool picked: sap_sandbox",
+    "ts": 1765114971.5554304
+  },
+  {
+    "id": 49,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "Fetched 1 PO(s)",
+    "ts": 1765114971.648196
+  },
+  {
+    "id": 50,
+    "invoice_id": "INV-1001",
+    "stage": "MATCH_TWO_WAY",
+    "message": "Match score 0.95, result MATCHED",
+    "ts": 1765114971.735067
+  },
+  {
+    "id": 51,
+    "invoice_id": "INV-1001",
+    "stage": "CHECKPOINT_HITL",
+    "message": "Checkpoint created 5515d9c6-9452-4f7a-b630-62b970fe81cd",
+    "ts": 1765114971.9463265
+  },
+  {
+    "id": 52,
+    "invoice_id": "INV-1001",
+    "stage": "INTAKE",
+    "message": "Persisted raw_id c1876d8f-8d7b-46b7-84da-2ce6213767cc",
+    "ts": 1765114987.3401632
+  },
+  {
+    "id": 53,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Bigtool selected: google_vision",
+    "ts": 1765114987.5306032
+  },
+  {
+    "id": 54,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Parsed line items",
+    "ts": 1765114987.6115882
+  },
+  {
+    "id": 55,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Bigtool selected for enrichment: clearbit",
+    "ts": 1765114987.7212303
+  },
+  {
+    "id": 56,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Vendor normalized and enriched",
+    "ts": 1765114987.8243003
+  },
+  {
+    "id": 57,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "ERP tool picked: sap_sandbox",
+    "ts": 1765114987.9245949
+  },
+  {
+    "id": 58,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "Fetched 1 PO(s)",
+    "ts": 1765114988.0248413
+  },
+  {
+    "id": 59,
+    "invoice_id": "INV-1001",
+    "stage": "MATCH_TWO_WAY",
+    "message": "Match score 0.95, result MATCHED",
+    "ts": 1765114988.1243236
+  },
+  {
+    "id": 60,
+    "invoice_id": "INV-1001",
+    "stage": "CHECKPOINT_HITL",
+    "message": "Checkpoint created 459b844a-aba8-4855-805c-30ecd402bb70",
+    "ts": 1765114988.3105385
+  },
+  {
+    "id": 61,
+    "invoice_id": "INV-1001",
+    "stage": "RECONCILE",
+    "message": "Accounting entries built",
+    "ts": 1765114992.4009597
+  },
+  {
+    "id": 62,
+    "invoice_id": "INV-1001",
+    "stage": "APPROVE",
+    "message": "Approval status ESCALATED",
+    "ts": 1765114992.4875226
+  },
+  {
+    "id": 63,
+    "invoice_id": "INV-1001",
+    "stage": "POSTING",
+    "message": "Posted to ERP: {'posted': True, 'erp_txn_id': 'TXN-555'}",
+    "ts": 1765114992.5934849
+  },
+  {
+    "id": 64,
+    "invoice_id": "INV-1001",
+    "stage": "NOTIFY",
+    "message": "Notifications sent",
+    "ts": 1765114992.6896565
+  },
+  {
+    "id": 65,
+    "invoice_id": "INV-1001",
+    "stage": "COMPLETE",
+    "message": "Workflow complete",
+    "ts": 1765114992.7841523
+  },
+  {
+    "id": 66,
+    "invoice_id": "INV-1001",
+    "stage": "INTAKE",
+    "message": "Persisted raw_id 893c5ad4-3aa5-4ebd-878e-19a53b2b96a0",
+    "ts": 1765115368.134519
+  },
+  {
+    "id": 67,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Bigtool selected: google_vision",
+    "ts": 1765115368.336216
+  },
+  {
+    "id": 68,
+    "invoice_id": "INV-1001",
+    "stage": "UNDERSTAND",
+    "message": "Parsed line items",
+    "ts": 1765115368.4407365
+  },
+  {
+    "id": 69,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Bigtool selected for enrichment: clearbit",
+    "ts": 1765115368.5379615
+  },
+  {
+    "id": 70,
+    "invoice_id": "INV-1001",
+    "stage": "PREPARE",
+    "message": "Vendor normalized and enriched",
+    "ts": 1765115368.6304905
+  },
+  {
+    "id": 71,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "ERP tool picked: sap_sandbox",
+    "ts": 1765115368.739004
+  },
+  {
+    "id": 72,
+    "invoice_id": "INV-1001",
+    "stage": "RETRIEVE",
+    "message": "Fetched 1 PO(s)",
+    "ts": 1765115368.8314514
+  },
+  {
+    "id": 73,
+    "invoice_id": "INV-1001",
+    "stage": "MATCH_TWO_WAY",
+    "message": "Match score 0.95, result MATCHED",
+    "ts": 1765115368.9204726
+  },
+  {
+    "id": 74,
+    "invoice_id": "INV-1001",
+    "stage": "CHECKPOINT_HITL",
+    "message": "Checkpoint created 2526eefa-076d-413b-a248-3b68ac183fd9",
+    "ts": 1765115369.1176453
+  },
+  {
+    "id": 75,
+    "invoice_id": "INV-1001",
+    "stage": "RECONCILE",
+    "message": "Accounting entries built",
+    "ts": 1765115374.5302374
+  },
+  {
+    "id": 76,
+    "invoice_id": "INV-1001",
+    "stage": "APPROVE",
+    "message": "Approval status ESCALATED",
+    "ts": 1765115374.6883502
+  },
+  {
+    "id": 77,
+    "invoice_id": "INV-1001",
+    "stage": "POSTING",
+    "message": "Posted to ERP: {'posted': True, 'erp_txn_id': 'TXN-555'}",
+    "ts": 1765115374.8263407
+  },
+  {
+    "id": 78,
+    "invoice_id": "INV-1001",
+    "stage": "NOTIFY",
+    "message": "Notifications sent",
+    "ts": 1765115374.9215922
+  },
+  {
+    "id": 79,
+    "invoice_id": "INV-1001",
+    "stage": "COMPLETE",
+    "message": "Workflow complete",
+    "ts": 1765115375.0174358
+  },
+  {
+    "id": 80,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "INTAKE",
+    "message": "Persisted raw_id 6f1d5262-9f85-462e-85e2-652aa3f6e84d",
+    "ts": 1765116478.9607258
+  },
+  {
+    "id": 81,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "UNDERSTAND",
+    "message": "Bigtool selected: google_vision",
+    "ts": 1765116479.1593165
+  },
+  {
+    "id": 82,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "UNDERSTAND",
+    "message": "Parsed line items",
+    "ts": 1765116479.252448
+  },
+  {
+    "id": 83,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "PREPARE",
+    "message": "Bigtool selected for enrichment: clearbit",
+    "ts": 1765116479.3383207
+  },
+  {
+    "id": 84,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "PREPARE",
+    "message": "Vendor normalized and enriched",
+    "ts": 1765116479.4427106
+  },
+  {
+    "id": 85,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "RETRIEVE",
+    "message": "ERP tool picked: sap_sandbox",
+    "ts": 1765116479.5411007
+  },
+  {
+    "id": 86,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "RETRIEVE",
+    "message": "Fetched 1 PO(s)",
+    "ts": 1765116479.6212976
+  },
+  {
+    "id": 87,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "MATCH_TWO_WAY",
+    "message": "Match score 0.3, result FAILED",
+    "ts": 1765116479.7296014
+  },
+  {
+    "id": 88,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "CHECKPOINT_HITL",
+    "message": "Checkpoint created a7bee363-84cf-4b28-82a6-24162c29d79c",
+    "ts": 1765116479.9069555
+  },
+  {
+    "id": 89,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "RECONCILE",
+    "message": "Accounting entries built",
+    "ts": 1765116529.0406046
+  },
+  {
+    "id": 90,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "APPROVE",
+    "message": "Approval status ESCALATED",
+    "ts": 1765116529.1442556
+  },
+  {
+    "id": 91,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "POSTING",
+    "message": "Posted to ERP: {'posted': True, 'erp_txn_id': 'TXN-555'}",
+    "ts": 1765116529.2475631
+  },
+  {
+    "id": 92,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "NOTIFY",
+    "message": "Notifications sent",
+    "ts": 1765116529.3430529
+  },
+  {
+    "id": 93,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "COMPLETE",
+    "message": "Workflow complete",
+    "ts": 1765116529.4388623
+  },
+  {
+    "id": 94,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "INTAKE",
+    "message": "Persisted raw_id 390afd8d-3ac6-4212-91a5-8740faad3ebd",
+    "ts": 1765116929.2330263
+  },
+  {
+    "id": 95,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "UNDERSTAND",
+    "message": "Bigtool selected: google_vision",
+    "ts": 1765116929.427466
+  },
+  {
+    "id": 96,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "UNDERSTAND",
+    "message": "Parsed line items",
+    "ts": 1765116929.5323107
+  },
+  {
+    "id": 97,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "PREPARE",
+    "message": "Bigtool selected for enrichment: clearbit",
+    "ts": 1765116929.6300244
+  },
+  {
+    "id": 98,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "PREPARE",
+    "message": "Vendor normalized and enriched",
+    "ts": 1765116930.032547
+  },
+  {
+    "id": 99,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "RETRIEVE",
+    "message": "ERP tool picked: sap_sandbox",
+    "ts": 1765116930.1321833
+  },
+  {
+    "id": 100,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "RETRIEVE",
+    "message": "Fetched 1 PO(s)",
+    "ts": 1765116930.233966
+  },
+  {
+    "id": 101,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "MATCH_TWO_WAY",
+    "message": "Match score 0.3, result FAILED",
+    "ts": 1765116930.3322608
+  },
+  {
+    "id": 102,
+    "invoice_id": "INV-Demo-1001",
+    "stage": "CHECKPOINT_HITL",
+    "message": "Checkpoint created 420a99ac-9108-496a-a5b9-3563ab26e7d0",
+    "ts": 1765116930.5086052
+  }
+]

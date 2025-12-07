@@ -1,0 +1,27 @@
+digraph workflow {
+	rankdir=LR;
+	node [shape=box, style=rounded, fontsize=10];
+	"INTAKE" [label="INTAKE\nIngestNode" style="" fillcolor="lightgrey"];
+	"UNDERSTAND" [label="UNDERSTAND\nOcrNlpNode" style="" fillcolor="lightgrey"];
+	"PREPARE" [label="PREPARE\nNormalizeEnrichNode" style="" fillcolor="lightgrey"];
+	"RETRIEVE" [label="RETRIEVE\nErpFetchNode" style="" fillcolor="lightgrey"];
+	"MATCH_TWO_WAY" [label="MATCH_TWO_WAY\nTwoWayMatcherNode" style="" fillcolor="lightgrey"];
+	"CHECKPOINT_HITL" [label="CHECKPOINT_HITL\nCheckpointNode" style="filled" fillcolor="lightgoldenrod"];
+	"HITL_DECISION" [label="HITL_DECISION\nHumanReviewNode" style="" fillcolor="lightgrey"];
+	"RECONCILE" [label="RECONCILE\nReconciliationNode" style="" fillcolor="lightgrey"];
+	"APPROVE" [label="APPROVE\nApprovalNode" style="" fillcolor="lightgrey"];
+	"POSTING" [label="POSTING\nPostingNode" style="" fillcolor="lightgrey"];
+	"NOTIFY" [label="NOTIFY\nNotifyNode" style="" fillcolor="lightgrey"];
+	"COMPLETE" [label="COMPLETE\nCompleteNode" style="" fillcolor="lightgrey"];
+	"INTAKE" -> "UNDERSTAND";
+	"UNDERSTAND" -> "PREPARE";
+	"PREPARE" -> "RETRIEVE";
+	"RETRIEVE" -> "MATCH_TWO_WAY";
+	"MATCH_TWO_WAY" -> "CHECKPOINT_HITL";
+	"CHECKPOINT_HITL" -> "HITL_DECISION";
+	"HITL_DECISION" -> "RECONCILE";
+	"RECONCILE" -> "APPROVE";
+	"APPROVE" -> "POSTING";
+	"POSTING" -> "NOTIFY";
+	"NOTIFY" -> "COMPLETE";
+}

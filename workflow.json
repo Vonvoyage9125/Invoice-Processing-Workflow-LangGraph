@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "author": "LangGraph Demo",
+    "created": "2025-12-07",
+    "version": "1.0"
+  },
+  "version": "1.0",
+  "workflow_name": "InvoiceProcessing_v1",
+  "description": "LangGraph invoice processing with HITL checkpoint/resume and Bigtool tool selection.",
+  "config": {
+    "match_threshold": 0.90,
+    "two_way_tolerance_pct": 5,
+    "human_review_queue": "human_review_queue",
+    "checkpoint_table": "checkpoints",
+    "default_db": "./demo.db",
+    "review_url_template": "http://localhost:8081/human-review/ui?checkpoint_id={checkpoint_id}"
+  },
+  "inputs": {
+    "type": "object",
+    "properties": {
+      "invoice_id": { "type": "string" },
+      "vendor_name": { "type": "string" },
+      "vendor_tax_id": { "type": "string" },
+      "invoice_date": { "type": "string", "format": "date" },
+      "due_date": { "type": "string", "format": "date" },
+      "amount": { "type": "number" },
+      "currency": { "type": "string" },
+      "line_items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "desc": { "type": "string" },
+            "qty": { "type": "number" },
+            "unit_price": { "type": "number" },
+            "total": { "type": "number" }
+          },
+          "required": ["desc","qty","unit_price","total"]
+        }
+      },
+      "attachments": { "type": "array", "items": { "type": "string" } }
+    },
+    "required": ["invoice_id","vendor_name","amount","currency"]
+  },
+  "human_review_api_contract": {
+    "pending": {
+      "method": "GET",
+      "path": "/human-review/pending",
+      "response_schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "checkpoint_id": { "type": "string" },
+            "review_url": { "type": "string" },
+            "payload": { "type": "object" },
+            "created_at": { "type": "string" }
+          }
+        }
+      }
+    },
+    "decision": {
+      "method": "POST",
+      "path": "/human-review/decision",
+      "request_schema": {
+        "type": "object",
+        "properties": {
+          "checkpoint_id": { "type": "string" },
+          "decision": { "type": "string", "enum": ["ACCEPT","REJECT"] },
+          "reviewer": { "type": "string" },
+          "notes": { "type": "string" }
+        },
+        "required": ["checkpoint_id","decision","reviewer"]
+      },
+      "responses": { "200": "Decision accepted", "400": "Bad request" }
+    }
+  },
+  "tools_hint": {
+    "ocr": ["google_vision", "tesseract", "aws_textract"],
+    "enrichment": ["clearbit", "people_data_labs", "vendor_db"],
+    "erp_connector": ["sap_sandbox", "netsuite", "mock_erp"],
+    "nlp": ["anthropic", "gemini"],
+    "db": ["sqlite", "postgres"],
+    "email": ["sendgrid", "ses"]
+  },
+  "error_handling": {
+    "retry_policy": { "max_retries": 3, "backoff_seconds": [1, 2, 4] },
+    "on_unrecoverable_error": "mark_failed_and_notify"
+  },
+  "stages": [
+    {
+      "id": "INTAKE",
+      "mode": "deterministic",
+      "agent": "IngestNode",
+      "instructions": "Accept invoice payload, validate schema and persist raw invoice.",
+      "tools": ["db"],
+      "output_schema": { "type": "object", "properties": { "ingested": { "type": "boolean" }, "invoice_id": { "type": "string" } }, "required": ["ingested","invoice_id"] }
+    },
+    {
+      "id": "UNDERSTAND",
+      "mode": "deterministic",
+      "agent": "OcrNlpNode",
+      "instructions": "Run OCR on attachments (Bigtool OCR pool) and parse line items using NLP.",
+      "tools": ["ocr","nlp"],
+      "output_schema": { "type": "object", "properties": { "ocr_text": { "type": "string" }, "line_items": { "type": "array" } }, "required": ["ocr_text","line_items"] }
+    },
+    {
+      "id": "PREPARE",
+      "mode": "deterministic",
+      "agent": "NormalizeEnrichNode",
+      "instructions": "Normalize vendor name, enrich vendor data (PAN/GST), compute validation flags.",
+      "tools": ["enrichment","nlp"],
+      "output_schema": { "type": "object", "properties": { "vendor_normalized": { "type": "string" }, "vendor_enrichment": { "type": "object" }, "flags": { "type": "object" } }, "required": ["vendor_normalized"] }
+    },
+    {
+      "id": "RETRIEVE",
+      "mode": "deterministic",
+      "agent": "ErpFetchNode",
+      "instructions": "Fetch PO, GRN and historical invoices from ERP via Bigtool-selected connector.",
+      "tools": ["erp_connector"],
+      "output_schema": { "type": "object", "properties": { "pos": { "type": "array" }, "grns": { "type": "array" }, "history": { "type": "array" } } }
+    },
+    {
+      "id": "MATCH_TWO_WAY",
+      "mode": "deterministic",
+      "agent": "TwoWayMatcherNode",
+      "instructions": "Compute match_score (0-1) comparing invoice vs PO. If below threshold, trigger CHECKPOINT_HITL.",
+      "tools": [],
+      "output_schema": { "type": "object", "properties": { "match_score": { "type": "number" } }, "required": ["match_score"] }
+    },
+    {
+      "id": "CHECKPOINT_HITL",
+      "mode": "deterministic",
+      "agent": "CheckpointNode",
+      "instructions": "Persist full workflow state to DB and enqueue for human review if match_score < config.match_threshold.",
+      "tools": ["db"],
+      "trigger_condition": "match_score < config.match_threshold",
+      "output_schema": { "type": "object", "properties": { "checkpoint_id": { "type": "string" }, "paused": { "type": "boolean" } }, "required": ["checkpoint_id"] }
+    },
+    {
+      "id": "HITL_DECISION",
+      "mode": "non-deterministic",
+      "agent": "HumanReviewNode",
+      "instructions": "Await human decision (ACCEPT/REJECT) via human_review_api_contract; ACCEPT resumes at RECONCILE, REJECT marks REQUIRES_MANUAL_HANDLING.",
+      "tools": ["db"],
+      "output_schema": { "type": "object", "properties": { "decision": { "type": "string", "enum": ["ACCEPT","REJECT"] }, "reviewer": { "type": "string" } }, "required": ["decision","reviewer"] }
+    },
+    {
+      "id": "RECONCILE",
+      "mode": "deterministic",
+      "agent": "ReconciliationNode",
+      "instructions": "Build accounting entries and prepare payable/receivable ledger artifacts.",
+      "tools": [],
+      "output_schema": { "type": "object", "properties": { "entries": { "type": "array" } } }
+    },
+    {
+      "id": "APPROVE",
+      "mode": "deterministic",
+      "agent": "ApprovalNode",
+      "instructions": "Run final policy checks and mark invoice approved for posting.",
+      "tools": [],
+      "output_schema": { "type": "object", "properties": { "approved": { "type": "boolean" } }, "required": ["approved"] }
+    },
+    {
+      "id": "POSTING",
+      "mode": "deterministic",
+      "agent": "PostingNode",
+      "instructions": "Post entries to ERP using selected connector.",
+      "tools": ["erp_connector"],
+      "output_schema": { "type": "object", "properties": { "erp_txn_id": { "type": "string" } } }
+    },
+    {
+      "id": "NOTIFY",
+      "mode": "deterministic",
+      "agent": "NotifyNode",
+      "instructions": "Send notifications (email) about processed invoice.",
+      "tools": ["email"],
+      "output_schema": { "type": "object", "properties": { "notified": { "type": "boolean" } } }
+    },
+    {
+      "id": "COMPLETE",
+      "mode": "deterministic",
+      "agent": "CompleteNode",
+      "instructions": "Finalize workflow and mark invoice processing as completed.",
+      "tools": [],
+      "output_schema": { "type": "object", "properties": { "status": { "type": "string" }, "final_payload": { "type": "object" } } }
+    }
+  ]
+}

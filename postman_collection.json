@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "Invoice Processing Workflow",
+    "description": "API endpoints for testing the human review and workflow orchestration",
+    "version": "1.0"
+  },
+  "item": [
+    {
+      "name": "Human Review API",
+      "item": [
+        {
+          "name": "List Pending Checkpoints",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8081/human-review/pending",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8081",
+              "path": ["human-review", "pending"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post Decision (Accept)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"checkpoint_id\":\"<checkpoint_id>\",\"decision\":\"ACCEPT\",\"reviewer_id\":\"postman_user\"}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8081/human-review/decision",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8081",
+              "path": ["human-review", "decision"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post Decision (Reject)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"checkpoint_id\":\"<checkpoint_id>\",\"decision\":\"REJECT\",\"reviewer_id\":\"postman_user\"}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8081/human-review/decision",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8081",
+              "path": ["human-review", "decision"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get UI",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8081/human-review/ui",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8081",
+              "path": ["human-review", "ui"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
