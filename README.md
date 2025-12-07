@@ -37,3 +37,33 @@ python.exe -m src.runner demo_invoice.json
 ```
 
 **Output:** Workflow executes all stages, checkpoint created on match failure, auto-resumed, final payload printed.
+ 
+### 3. Run Manual HITL Demo (Pause, Review, Resume)
+
+This project supports a Human-In-The-Loop (HITL) mode where the workflow pauses at checkpoints and waits for a reviewer decision via a small Flask UI.
+
+- **Terminal 1 — Start the Flask human-review API/UI:**
+
+```powershell
+python.exe -m src.api_flask
+```
+
+- **Terminal 2 — Start the runner in manual mode (no auto-accept):**
+
+```powershell
+python.exe -m src.runner demo_invoice.json --no-auto
+```
+
+- **Open the browser UI:**
+
+```
+http://127.0.0.1:8081/human-review/ui
+```
+
+When the runner reaches a checkpoint it will log a pause and the checkpoint ID. Use the browser UI to inspect the pending decision, then click **Accept** or **Reject**. After submitting, the runner will detect the decision and resume execution.
+
+Notes:
+- The `--no-auto` flag disables automatic accept/resume so that the workflow stays paused until a human decision is posted.
+- The Flask UI endpoints available are `/human-review/pending` and `/human-review/decision` (POST) for programmatic decisions.
+- For scripted decisions you can use `scripts/post_decision.py` which writes directly to the DB or calls the API.
+
